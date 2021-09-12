@@ -49,13 +49,31 @@ public class Main {
 
 //        System.out.println(list);
 
-//        MyArrayList<Integer> mal = new MyArrayList<>();
-//        mal.add(2);
-//        mal.add(4);
-//        mal.add(7);
-//        System.out.println(mal);
-//        mal.add(1, 77);
-//        System.out.println(mal);
+        MyArrayList<Integer> mal = new MyArrayList<>();
+        mal.add(0);
+        mal.add(1);
+        mal.add(2);
+        mal.add(3);
+        mal.add(4);
+        mal.add(5);
+        mal.add(6);
+        mal.add(7);
+        mal.add(8);
+        mal.add(9);
+        //mal.add(10);
+
+        try {
+            mal.add(9, 10);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println(mal);
+
+        //mal.add(1, 77);
+
+
+        //System.out.println(mal);
 
 //        MySortedArrayList<Integer> msal = new MySortedArrayList<>();
 //        msal.add(6);
@@ -67,16 +85,45 @@ public class Main {
 //        System.out.println(msal);
 //        System.out.println(msal.binaryFind(7));
 
-        int n = 10;
-        Random random = new Random();
-        MyArrayList<Integer> mal = new MyArrayList<>(n);
-        for (int i = 0; i < n; i++) {
-            mal.add(random.nextInt(10));
-        }
-        System.out.println(mal);
-//        mal.selectionSort();
-//        mal.insertionSort();
-        mal.bubbleSort();
-        System.out.println(mal);
+//        int n = 10;
+//        Random random = new Random();
+//        MyArrayList<Integer> mal = new MyArrayList<>(n);
+//        for (int i = 0; i < n; i++) {
+//            mal.add(random.nextInt(10));
+//        }
+//        System.out.println(mal);
+////        mal.selectionSort();
+////        mal.insertionSort();
+//        mal.bubbleSort();
+//        System.out.println(mal);
+
+//        int n = 100_000;
+//        int[] arr = new int[n];
+//
+//        for (int i = 0; i < arr.length; i++) {
+//            arr[i] = (int) (i * Math.random());
+//            System.out.println(arr[i]);
+//        }
+
+/*
+1. Создать массив большого размера (100000 элементов).
+2. Заполнить массив случайными числами.
+3. Проверить скорость выполнения каждой сортировки.
+*/
+//        int n = 100_000;
+//        Random random = new Random();
+//        MyArrayList<Integer> mal = new MyArrayList<>(n);
+//        for (int i = 0; i < n; i++) {
+//            mal.add(random.nextInt(n));
+//        }
+
+//        long startTime = System.currentTimeMillis();
+//        mal.selectionSort(); // 16323ms
+//        mal.insertionSort(); // 6661ms
+//        mal.bubbleSort(); // 45913ms
+//        mal.bubbleSortOptimized(); // 46386ms
+//        System.out.println(mal);
+//        System.out.println("Time of execution is " + (System.currentTimeMillis() - startTime) + "ms");
+
     }
 }
