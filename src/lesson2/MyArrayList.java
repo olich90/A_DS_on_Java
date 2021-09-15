@@ -1,5 +1,7 @@
 package lesson2;
 
+import java.util.Arrays;
+
 public class MyArrayList<T extends Comparable<T>> {
     private T[] list;
     private int size;
@@ -17,14 +19,26 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public void add(T item) {
-        //check size
+        // 4*. Создать метод увеличения массива( на 1.5 раза +1) и в коде места с check size применить этот метод
+        if (size == list.length) {
+            list = grow();
+        }
+
         list[size] = item;
         size++;
     }
 
     public void add(int index, T item) {
-        //check size
-        //check index
+        //check size 4*. Создать метод увеличения массива( на 1.5 раза +1) и в коде места с check size применить этот метод
+        if (size == list.length) {
+            list = grow();
+        }
+
+        //check index - 5*. Добавить проверки в местах в коде с check index
+        if (index < 0 || index >= list.length) {
+            throw new ArrayIndexOutOfBoundsException("Invalid index!");
+        }
+
         for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
@@ -46,7 +60,11 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public void remove(int index) {
-        //check index
+        //check index - 5*. Добавить проверки в местах в коде с check index
+        if (index < 0 || index >= list.length) {
+            throw new ArrayIndexOutOfBoundsException("Invalid index!");
+        }
+
         for (int i = index; i < size; i++) {
             list[i] = list[i + 1];
         }
@@ -71,7 +89,10 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public T get(int index) {
-        //check index
+        //check index - 5*. Добавить проверки в местах в коде с check index
+        if (index < 0 || index >= list.length) {
+            throw new ArrayIndexOutOfBoundsException("Invalid index!");
+        }
         return list[index];
     }
 
@@ -150,4 +171,13 @@ public class MyArrayList<T extends Comparable<T>> {
         }
     }
 
+    // 4*. Создать метод увеличения массива( на 1.5 раза +1) и в коде места с check size применить этот метод
+    private T[] grow() {
+        T[] newList;
+        int oldCapacity = list.length;
+        int newCapacity = oldCapacity * 3 / 2 + 1;
+
+        newList = Arrays.copyOf(list, newCapacity);
+        return newList;
+    }
 }
