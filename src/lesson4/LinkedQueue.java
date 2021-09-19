@@ -1,22 +1,23 @@
+// 1. Реализовать очередь используя MyLinkedList()
 package lesson4;
 
-public class LinkedStack<T> {
+public class LinkedQueue<T> {
     private MyLinkedList<T> list;
 
-    public LinkedStack() {
+    public LinkedQueue() {
         list = new MyLinkedList<>();
     }
 
-    public void push(T item) {
+    public void insert(T item) {
         list.insertFirst(item);
     }
 
-    public T pop() {
-        return list.removeFirst();
+    public T remove() {
+        return list.removeLast();
     }
 
-    public T peek() {
-        return list.getFirst();
+    public T peekFront() {
+        return list.getLast();
     }
 
     public boolean isEmpty() {

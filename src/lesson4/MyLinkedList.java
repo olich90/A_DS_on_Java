@@ -196,4 +196,21 @@ public class MyLinkedList<T> implements Iterable<T> {
         sb.append("]");
         return sb.toString();
     }
+
+    // 2. Создать метод indexOf() в классе MyLinkedList()
+    public int indexOf(T item){
+        if (isEmpty()) {
+            return -1;
+        }
+        Node current = first;
+        int step = 0;
+        while (current != null && !current.getValue().equals(item)) {
+            current = current.getNext();
+            step++;
+        }
+        if (current == null) {
+            return -1;
+        }
+        return step;
+    }
 }
