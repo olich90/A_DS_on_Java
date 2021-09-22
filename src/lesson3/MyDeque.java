@@ -1,6 +1,10 @@
+// 1. Создать класс для реализации дека.
+
 package lesson3;
 
-public class MyQueue<T> {
+import java.util.Arrays;
+
+public class MyDeque<T> {
     private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 10;
@@ -12,14 +16,14 @@ public class MyQueue<T> {
     //    E
     //1 5     8
 
-    public MyQueue(int capacity) {
+    public MyDeque(int capacity) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("capacity: " + capacity);
         }
         list = (T[]) new Object[capacity];
     }
 
-    public MyQueue() {
+    public MyDeque() {
         list = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
@@ -27,30 +31,60 @@ public class MyQueue<T> {
         return (index + 1) % list.length;
     }
 
-    public T peekFront() {
+    private int prevIndex(int index) {
+        return index - 1 < 0 ? list.length - 1 : (index - 1) % list.length;
+    }
+
+    public T peekLeft() {
         if (isEmpty()) {
             throw new RuntimeException("Queue isEmpty");
         }
-
         return list[begin];
     }
 
-    public void insert(T item) {
+    public T peekRight() {
+        if (isEmpty()) {
+            throw new RuntimeException("Queue isEmpty");
+        }
+        return list[prevIndex(end)];
+    }
+
+    public void insertRight(T item) {
         if (isFull()) {
             //Расширение массива***
             reCapacity(list.length * 3 / 2 + 1);
             //throw new RuntimeException("Queue isFull");
+
         }
         size++;
         list[end] = item;
         end = nextIndex(end);
     }
 
-    public T remove() {
-        T temp = peekFront();
+    public void insertLeft(T item) {
+        if (isFull()) {
+            //Расширение массива***
+            reCapacity(list.length * 3 / 2 + 1);
+            //throw new RuntimeException("Queue isFull");
+        }
+        size++;
+        begin = prevIndex(begin);
+        list[begin] = item;
+    }
+
+    public T removeLeft() {
+        T temp = peekLeft();
         size--;
         list[begin] = null;
         begin = nextIndex(begin);
+        return temp;
+    }
+
+    public T removeRight() {
+        T temp = peekRight();
+        size--;
+        list[prevIndex(end)] = null;
+        end = prevIndex(end);
         return temp;
     }
 
