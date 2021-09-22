@@ -28,7 +28,9 @@ public class MyStack<T> {
     public void push(T item) {
         if (isFull()) {
             // расширение массива
-            throw new StackOverflowError();
+            // 3. Прикрутить увеличение массива в классе стек и приоритетная очередь.
+            reCapacity(list.length * 3 / 2 + 1);
+            //throw new StackOverflowError();
         }
         list[size] = item;
         size++;
