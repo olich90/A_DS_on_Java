@@ -97,6 +97,26 @@ public class Main {
 //        mal.bubbleSort();
 //        System.out.println(mal);
 
+//        MyArrayList<Integer> mal = new MyArrayList<>();
+//        mal.add(2);
+//        mal.add(4);
+//        mal.add(7);
+//        System.out.println(mal);
+//        mal.add(1, 77);
+//        System.out.println(mal);
+
+//        MySortedArrayList<Integer> msal = new MySortedArrayList<>();
+//        msal.add(6);
+//        msal.add(16);
+//        msal.add(3);
+//        msal.add(7);
+//        msal.add(5);
+//        msal.add(5);
+//
+//        System.out.println(msal);
+////        System.out.println(msal.binaryFind(7));
+//        System.out.println(msal.recBynaryFind(5));
+
 //        int n = 100_000;
 //        int[] arr = new int[n];
 //
@@ -123,6 +143,7 @@ public class Main {
 //        mal.bubbleSort(); // 45913ms
 //        mal.bubbleSortOptimized(); // 46386ms
 //        System.out.println(mal);
+        mal.quickSort(); // 86 ms  O(n log n)
 //        System.out.println("Time of execution is " + (System.currentTimeMillis() - startTime) + "ms");
 
     }
