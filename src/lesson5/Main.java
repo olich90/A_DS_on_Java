@@ -14,7 +14,9 @@ public class Main {
 //        System.out.println(multiply(3, 8));
 //        System.out.println(recMultiply(3, 8));
 
-        reversPrint("qwerty".toCharArray());
+        //reversPrint("qwerty".toCharArray());
+        System.out.println(power(-5, 2));
+        System.out.println(recPower(2, 8));
 
     }
 
@@ -92,5 +94,29 @@ public class Main {
             return 1;
         }
         return recFact(n - 1) * n;
+    }
+
+    public static int power(int a, int b) {
+        if (a == 1 || b == 0) {
+            return 1;
+        }
+        if (a == 0 || b == 1) {
+            return a;
+        }
+        int p = 1;
+        for (int i = 0; i < b; i++) {
+            p = p * a;
+        }
+        return p;
+    }
+
+    public static int recPower(int a, int b) {
+        if (a == 1 || b == 0) {
+            return 1;
+        }
+        if (a == 0 || b == 1) {
+            return a;
+        }
+        return a * recPower(a, b - 1);
     }
 }
