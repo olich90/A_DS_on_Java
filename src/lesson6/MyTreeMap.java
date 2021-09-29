@@ -11,11 +11,13 @@ public class MyTreeMap<K extends Comparable<K>, V> {
         Node left;
         Node right;
         int size;
+        int height;
 
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
             this.size = 1;
+            this.height = 0;
         }
     }
 
@@ -28,6 +30,17 @@ public class MyTreeMap<K extends Comparable<K>, V> {
             return 0;
         }
         return node.size;
+    }
+
+    public int height() {
+         return height(root);
+    }
+
+    private int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return node.height;
     }
 
     public boolean isEmpty() {
@@ -85,6 +98,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
             node.right = put(node.right, key, value);
         }
         node.size = size(node.left) + size(node.right) + 1;
+        node.height = Math.max(size(node.left), size(node.right)) + 1;
         return node;
     }
 
@@ -142,6 +156,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
             node.left = temp.left;
         }
         node.size = size(node.left) + size(node.right) + 1;
+        node.height = Math.max(size(node.left), size(node.right)) + 1;
         return node;
     }
 
@@ -159,5 +174,14 @@ public class MyTreeMap<K extends Comparable<K>, V> {
                 toString(node.right);
     }
 
+    public boolean isBalanced(){
+        return isBalanced(root);
+    }
 
+    private boolean isBalanced(Node node) {
+        if (node == null) {
+            return true;
+        }
+        return isBalanced(node.left) && isBalanced(node.right);
+    }
 }
