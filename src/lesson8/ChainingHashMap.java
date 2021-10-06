@@ -70,6 +70,21 @@ public class ChainingHashMap<K, V> {
         size++;
     }
 
+    public boolean remove(K key) {
+        checkKeyNotNull(key);
+        int i = hash(key);
+        for (Node node : st[i]) {
+            if (!node.key.equals(key)) {
+                return false;
+            } else {
+                st[i].removeIf(n -> node.value.equals(get(key)));
+                return true;
+            }
+        }
+        size--;
+        return false;
+    }
+
     public V get(K key){
         checkKeyNotNull(key);
         int i = hash(key);
